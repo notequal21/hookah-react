@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/hookah-react/static/css/main.76f5c978.chunk.css",
+    "main.js": "/hookah-react/static/js/main.8c7c47ea.chunk.js",
+    "main.js.map": "/hookah-react/static/js/main.8c7c47ea.chunk.js.map",
+    "runtime-main.js": "/hookah-react/static/js/runtime-main.5a030a0a.js",
+    "runtime-main.js.map": "/hookah-react/static/js/runtime-main.5a030a0a.js.map",
+    "static/js/2.115d898d.chunk.js": "/hookah-react/static/js/2.115d898d.chunk.js",
+    "static/js/2.115d898d.chunk.js.map": "/hookah-react/static/js/2.115d898d.chunk.js.map",
+    "static/js/3.e8a549df.chunk.js": "/hookah-react/static/js/3.e8a549df.chunk.js",
+    "static/js/3.e8a549df.chunk.js.map": "/hookah-react/static/js/3.e8a549df.chunk.js.map",
+    "index.html": "/hookah-react/index.html",
+    "static/css/main.76f5c978.chunk.css.map": "/hookah-react/static/css/main.76f5c978.chunk.css.map",
+    "static/js/2.115d898d.chunk.js.LICENSE.txt": "/hookah-react/static/js/2.115d898d.chunk.js.LICENSE.txt",
+    "static/media/01.1994b392.png": "/hookah-react/static/media/01.1994b392.png",
+    "static/media/login-bg.40f3806c.jpg": "/hookah-react/static/media/login-bg.40f3806c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a030a0a.js",
+    "static/js/2.115d898d.chunk.js",
+    "static/css/main.76f5c978.chunk.css",
+    "static/js/main.8c7c47ea.chunk.js"
+  ]
+}
