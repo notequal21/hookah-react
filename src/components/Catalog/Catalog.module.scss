@@ -1,0 +1,90 @@
+.catalog {
+
+}
+.header {
+  margin: 20px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  &__title {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 31px;
+    line-height: 38px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+  &__info {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 21px;
+    text-align: right;
+    color: #FFFFFF;
+    display: flex;
+  }
+  &__infoBody {
+
+  }
+  &__infoGoods {}
+  &__infoSum {
+    margin: 5px 0 0 0;
+  }
+  &__infoBtn {
+    margin: 0 0 0 20px;
+    cursor: pointer;
+    svg {
+      color: #D58C51;
+    }
+  }
+}
+
+.catalogBody {
+  margin: 100px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  &__item {
+    flex: 0 0 22.5%;
+    border: 1px solid #D58C51;
+    &Img {
+      width: inherit;
+      height: 400px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
+  &__itemName {
+    border-top: 1px solid #D58C51;
+    font-family: Arial;
+    font-weight: 500;
+    font-size: 26px;
+    color: #D58C51;
+    text-align: center;
+    padding: 15px 0;
+  }
+  &__itemPrice {
+    border-top: 1px solid #D58C51;
+    font-family: Arial;
+    font-weight: 500;
+    font-size: 24px;
+    color: #D58C51;
+    text-align: center;
+    padding: 10px 0;
+  }
+  &__itemBtn {
+    cursor: pointer;
+    width: 100%;
+    background-color: #D58C51;
+    padding: 10px 0;
+    text-align: center;
+    font-family: Arial;
+    font-weight: 500;
+    font-size: 22px;
+    color: #161516;
+  }
+}
