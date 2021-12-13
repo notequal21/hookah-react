@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/hookah-react/static/css/main.54cb685d.chunk.css",
-    "main.js": "/hookah-react/static/js/main.140b91dc.chunk.js",
-    "main.js.map": "/hookah-react/static/js/main.140b91dc.chunk.js.map",
+    "main.js": "/hookah-react/static/js/main.7eb8924c.chunk.js",
+    "main.js.map": "/hookah-react/static/js/main.7eb8924c.chunk.js.map",
     "runtime-main.js": "/hookah-react/static/js/runtime-main.117410fa.js",
     "runtime-main.js.map": "/hookah-react/static/js/runtime-main.117410fa.js.map",
     "static/js/2.17fcf87e.chunk.js": "/hookah-react/static/js/2.17fcf87e.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.117410fa.js",
     "static/js/2.17fcf87e.chunk.js",
     "static/css/main.54cb685d.chunk.css",
-    "static/js/main.140b91dc.chunk.js"
+    "static/js/main.7eb8924c.chunk.js"
   ]
 }
