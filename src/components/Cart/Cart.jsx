@@ -1,6 +1,7 @@
 import style from './Cart.module.scss'
 import {state} from "../../state/state";
 import {NavLink, Redirect} from "react-router-dom";
+import React from "react";
 
 const Cart = () => {
 
@@ -15,7 +16,7 @@ const Cart = () => {
     let items = catalog.map(item => {
         if (item.inCart) {
             return (
-                <CartItem key={item.id} id={item.id} img={item.img} name={item.name} price={item.price}/>
+                <CartItem key={item.id} count={item.count} id={item.id} img={item.img} name={item.name} price={item.price}/>
             )
         }
     })
@@ -24,9 +25,9 @@ const Cart = () => {
     let sum = 0
     let summary = catalog.forEach(item => {
         if (item.inCart) {
-            sum += Number(item.price)
+            sum += Number(item.price) * Number(item.count)
         }
-        return sum
+        return localStorage.setItem('summary', sum)
     })
 
     return (
@@ -39,7 +40,7 @@ const Cart = () => {
                     </div>
                     <div className={`${style.bottom}`}>
                         <div className={`${style.bottom__sum}`}>
-                            Заказ на сумму: <span>{sum}</span>
+                            Заказ на сумму: <span>{localStorage.getItem('summary')} ₽</span>
                         </div>
                         <div className={`${style.bottom__btn}`}>
                             Оформить заказ
@@ -58,7 +59,24 @@ const CartItem = (props) => {
     // Удаление из корзины
     const removeItem = (e) => {
         const id = e.currentTarget.value - 1
-        state.removeFromCart(e.currentTarget.value)
+        state.removeFromCart(id)
+    }
+
+    const updateCount = (e) => {
+        const id = e.currentTarget.id
+        const count = e.current.value
+        console.log(count)
+        state.updateItemCount(id, count)
+    }
+
+    const decrementItem = (e) => {
+        const id = e.currentTarget.value - 1
+        state.decrementItem(id)
+    }
+
+    const incrementItem = (e) => {
+        const id = e.currentTarget.value - 1
+        state.incrementItem(id)
     }
 
     return (
@@ -70,7 +88,13 @@ const CartItem = (props) => {
                 Название: <span>{props.name}</span>
             </div>
             <div className={`${style.cartItem__price}`}>
-                Цена: <span>{props.price}</span>
+                Цена: <span>{props.price} ₽</span>
+            </div>
+            <div className={`${style.cartItem__count}`}>
+                Количество:
+                <button value={props.id} onClick={decrementItem}>-</button>
+                <span><input id={props.id} type="text" value={props.count}/></span>
+                <button value={props.id} onClick={incrementItem}>+</button>
             </div>
             <button value={props.id} onClick={removeItem} className={`${style.cartItem__btn}`}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">

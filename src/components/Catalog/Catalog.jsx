@@ -1,9 +1,6 @@
 import style from './Catalog.module.scss'
 import {NavLink, Redirect} from "react-router-dom";
 import {state} from "../../state/state";
-import Cart from "../Cart/Cart";
-import ReactDOM from "react-dom";
-
 
 const Catalog = () => {
 
@@ -15,21 +12,42 @@ const Catalog = () => {
     let catalog = state.catalog.getCatalog()
 
     // Формируем список товаров в каталоге
-    let items = catalog.map(item => <CatalogItem key={item.id} id={item.id} img={item.img} name={item.name} price={item.price}/>)
+    let items = catalog.map(item => <CatalogItem
+        key={item.id} id={item.id} img={item.img}
+        name={item.name} price={item.price} inCart={item.inCart}/>)
 
-    let getItems = () => {
-        state.updateCount()
-        state.updateCost()
-        let count = state.cart.count
-        return count
+    let logout = () => {
+        localStorage.setItem('isAuth', 'null')
+        state.updateAuthStatus()
     }
+
+    // Вычисляем сумму
+    let sum = 0
+    let summary = catalog.forEach(item => {
+        if (item.inCart) {
+            sum += Number(item.price) * Number(item.count)
+        }
+        return localStorage.setItem('summary', sum)
+    })
+
+    // Находим количество товара
+    let count = 0
+    let itemsCount = catalog.forEach(item => {
+        if (item.inCart) {
+            count += item.count
+        }
+        return localStorage.setItem('count', count)
+    })
 
     return (
         <div className={`${style.catalog}`}>
             <div className={`container`}>
                 <div className={`${style.header}`}>
+                    <NavLink to={'/login'} onClick={logout} className={`${style.logout__btn}`}>
+                        Выйти
+                    </NavLink>
                     <div className={`${style.header__title}`}>
-                        наша продукция
+                        Каталог
                     </div>
                     <div className={`${style.header__info}`}>
                         <div className={`${style.header__infoBody}`}>
@@ -37,7 +55,6 @@ const Catalog = () => {
                                 {localStorage.getItem('count')} товара
                             </div>
                             <div className={`${style.header__infoSum}`}>
-                                {/*на сумму {state.cart.summary} ₽*/}
                                 на сумму {localStorage.getItem('summary')} ₽
                             </div>
                         </div>
@@ -64,10 +81,8 @@ const CatalogItem = (props) => {
 
     const addToCart = (e) => {
         if (catalog[e.currentTarget.value - 1].inCart) {
-            console.log('removed')
-            return state.removeFromCart(e.currentTarget.value)
+            return state.removeFromCart(e.currentTarget.value - 1)
         }
-        console.log('added')
         return state.addToCart(e.currentTarget.value - 1)
     }
 
@@ -82,9 +97,15 @@ const CatalogItem = (props) => {
             <div className={`${style.catalogBody__itemPrice}`}>
                 {props.price} ₽
             </div>
-            <button value={props.id} onClick={addToCart} className={`${style.catalogBody__itemBtn}`}>
-                В корзину
-            </button>
+            {
+                props.inCart ?
+                    <button value={props.id} onClick={addToCart} className={`${style.catalogBody__itemBtn}`}>
+                        Убрать из корзины
+                    </button>
+                    : <button value={props.id} onClick={addToCart} className={`${style.catalogBody__itemBtn}`}>
+                        В корзину
+                    </button>
+            }
         </div>
     )
 }

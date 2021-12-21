@@ -1,10 +1,18 @@
 import hookahImg from "../assets/img/hookahs/01.png";
-import login from "../components/Login/Login";
 import catalog from "../components/Catalog/Catalog";
 
 export const state = {
 
     isAuth: localStorage.getItem('isAuth'),
+    updateAuthStatus() {
+        this.isAuth = localStorage.getItem('isAuth')
+        if (localStorage.getItem('isAuth') === 'null') {
+            state.catalog.setCatalog()
+            localStorage.setItem('isAuth', 'null')
+            localStorage.setItem('count', 0)
+            localStorage.setItem('summary', 0)
+        }
+    },
 
     auth: {
         login: 'root',
@@ -21,14 +29,13 @@ export const state = {
     },
     catalog: {
         _catalog: [
-            {id: 1, img: hookahImg, name: 'Don Smart', price: 10000, inCart: false},
-            {id: 2, img: hookahImg, name: 'Don Smart 2', price: 5000, inCart: false},
-            {id: 3, img: hookahImg, name: 'Don Smart 3', price: 7000, inCart: false},
-            {id: 4, img: hookahImg, name: 'Don Smart 4', price: 14000, inCart: false},
-            {id: 5, img: hookahImg, name: 'Don Smart 5', price: 17000, inCart: false},
-            {id: 6, img: hookahImg, name: 'Don Smart 6', price: 22000, inCart: false},
+            {id: 1, img: hookahImg, name: 'Don Smart', price: 10000, inCart: false, count: 0},
+            {id: 2, img: hookahImg, name: 'Don Smart 2', price: 5000, inCart: false, count: 0},
+            {id: 3, img: hookahImg, name: 'Don Smart 3', price: 7000, inCart: false, count: 0},
+            {id: 4, img: hookahImg, name: 'Don Smart 4', price: 14000, inCart: false, count: 0},
+            {id: 5, img: hookahImg, name: 'Don Smart 5', price: 17000, inCart: false, count: 0},
+            {id: 6, img: hookahImg, name: 'Don Smart 6', price: 22000, inCart: false, count: 0},
         ],
-        // localStorage.setItem('catalog', JSON.stringify(this._catalog)),
         setCatalog() {
             return localStorage.setItem('catalog', JSON.stringify(this._catalog))
         },
@@ -37,86 +44,74 @@ export const state = {
         },
     },
     updateCount() {
-       // this.cart.count = 0
-
         let count = 0
         let catalog = JSON.parse(localStorage.getItem('catalog'))
         catalog.forEach(item => {
             if (item.inCart) {
-                // this.cart.summary += item.price
                 count += 1
             }
-            // return this.cart.summary
         })
         return localStorage.setItem('count', count)
-
-        // let count = 0
-        // this.catalog._catalog.forEach(item => {
-        //     if (item.inCart) {
-        //         // this.cart.count += 1
-        //         count += 1
-        //     }
-        //     // return this.cart.count
-        //     return localStorage.setItem('count', count)
-        // })
     },
     updateCost() {
-        // this.cart.summary = 0
         let sum = 0
         let catalog = JSON.parse(localStorage.getItem('catalog'))
         catalog.forEach(item => {
             if (item.inCart) {
-                // this.cart.summary += item.price
                 sum += item.price
             }
-            // return this.cart.summary
         })
         return localStorage.setItem('summary', sum)
-
-        // return localStorage.setItem('catalog', JSON.stringify(catalog))
-        // this.catalog._catalog.forEach(item => {
-        //     if (item.inCart) {
-        //         // this.cart.summary += item.price
-        //         sum += item.price
-        //     }
-        //     // return this.cart.summary
-        //     return localStorage.setItem('summary', sum)
-        // })
+    },
+    getItemCount(id) {
+        let catalog = JSON.parse(localStorage.getItem('catalog'))
+        return catalog[id].count
+    },
+    decrementItem(id) {
+        let catalog = JSON.parse(localStorage.getItem('catalog'))
+        if (catalog[id].count == 1) {
+            return
+        } else {
+            catalog[id].count -= 1
+        }
+        return localStorage.setItem('catalog', JSON.stringify(catalog))
+    },
+    incrementItem(id) {
+        let catalog = JSON.parse(localStorage.getItem('catalog'))
+        catalog[id].count += 1
+        return localStorage.setItem('catalog', JSON.stringify(catalog))
+    },
+    updateItemCount(id, count) {
+        let catalog = JSON.parse(localStorage.getItem('catalog'))
+        if (catalog[id].count <= 0) {
+            catalog[id].inCart = false
+        } else {
+            catalog[id].count = count
+        }
+        return localStorage.setItem('catalog', JSON.stringify(catalog))
     },
     addToCart(id) {
-        // this.catalog._catalog[id - 1].inCart = true
         let catalog = JSON.parse(localStorage.getItem('catalog'))
-        // console.log(catalog)
         catalog[id].inCart = true
+        catalog[id].count = 1
         return localStorage.setItem('catalog', JSON.stringify(catalog))
     },
     removeFromCart(id) {
-        // this.catalog._catalog[id - 1].inCart = false
+        debugger
         let catalog = JSON.parse(localStorage.getItem('catalog'))
-        catalog[id - 1].inCart = false
+        catalog[id].inCart = false
+        catalog[id].count = 0
         return localStorage.setItem('catalog', JSON.stringify(catalog))
     },
     // Находим количество всех товаров в корзине
     getCartCount() {
-        // let count = this.cart.count
         let count = 0
         let catalog = JSON.parse(localStorage.getItem('catalog'))
         catalog.forEach(item => {
             if (item.inCart) {
-                // this.cart.summary += item.price
                 count += 1
             }
-            // return this.cart.summary
             return localStorage.setItem('count', count)
         })
-
-        // let count = 0
-        // this.catalog._catalog.forEach(item => {
-        //     if (item.inCart) {
-        //         count += 1
-        //     }
-        //     // return this.cart.count = count
-        //     return localStorage.setItem('count', count)
-        // })
     },
 }

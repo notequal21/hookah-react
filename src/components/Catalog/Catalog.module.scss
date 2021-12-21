@@ -12,6 +12,9 @@
     line-height: 38px;
     text-transform: uppercase;
     color: #FFFFFF;
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
   }
   &__info {
     font-family: Arial;
@@ -22,6 +25,10 @@
     text-align: right;
     color: #FFFFFF;
     display: flex;
+    @media (max-width: 767px) {
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
   &__infoBody {
 
@@ -33,6 +40,15 @@
   &__infoBtn {
     margin: 0 0 0 20px;
     cursor: pointer;
+    @media (max-width: 767px) {
+      width: 30px;
+      height: 30px;
+      margin: 0 0 0 5px;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
     svg {
       color: #D58C51;
     }
@@ -44,9 +60,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+  @media (max-width: 992px) {
+    justify-content: space-between;
+    margin: 40px 0 0 0;
+  }
   &__item {
     flex: 0 0 22.5%;
     border: 1px solid #D58C51;
+    @media (max-width: 992px) {
+      flex: 0 0 45%;
+    }
+    @media (max-width: 767px) {
+      flex: 0 0 100%;
+    }
     &Img {
       width: inherit;
       height: 400px;
@@ -86,5 +112,22 @@
     font-weight: 500;
     font-size: 22px;
     color: #161516;
+  }
+}
+.logout__btn {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial;
+  font-size: 22px;
+  color: #131313;
+  background: #D58C51;
+  width: 200px;
+  height: 50px;
+  @media (max-width: 767px) {
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
   }
 }

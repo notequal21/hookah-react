@@ -9,12 +9,41 @@
   display: flex;
   justify-content: flex-start;
   color: #FFFFFF;
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 20px;
+    flex-direction: column;
+    text-align: left;
+    margin: 20px 0 0 0;
+  }
+  @media (max-width: 767px) {
+    font-size: 12px;
+    line-height: 16px;
+  }
   .bottom__btn {
     margin: 0 150px 0 0;
+    @media (max-width: 767px) {
+      margin: 0 0 10px 0;
+      font-size: 12px;
+      height: 40px;
+    }
   }
 }
 .cart {
   margin: 50px 0 0 0;
+  //height: calc(100vh - 150px);
+  //overflow: hidden;
+  //overflow-y: scroll;
+  padding: 0 20px 0 0;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 100%;
+    background-color: #161516;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #D58C51;
+  }
+
   &Con {
     height: 100vh;
   }
@@ -29,6 +58,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  &:last-child {
+    margin: 40px 0 40px 0;
+  }
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
   &:first-child {
     margin: 0;
   }
@@ -48,6 +84,9 @@
     font-size: 22px;
     line-height: 21px;
     color: #FFFFFF;
+    @media (max-width: 767px) {
+      margin: 10px 0 0 0;
+    }
     span {
       font-size: 26px;
       margin: 0 0 0 5px;
@@ -58,18 +97,52 @@
     font-size: 22px;
     line-height: 22px;
     color: #D58C51;
+    @media (max-width: 767px) {
+      margin: 10px 0 0 0;
+    }
     span {
       font-size: 26px;
       margin: 0 0 0 5px;
     }
   }
+  &__count {
+    font-family: Arial;
+    font-size: 22px;
+    line-height: 22px;
+    color: #ffffff;
+    @media (max-width: 767px) {
+      margin: 10px 0 0 0;
+    }
+    button {
+      background-color: transparent;
+      font-size: 30px;
+      color: #ffffff;
+      margin: 0 5px;
+    }
+    span {
+      font-size: 26px;
+      margin: 0 0 0 5px;
+      input {
+        background-color: transparent;
+        width: 30px;
+        color: #ffffff;
+        text-align: center;
+      }
+    }
+  }
   &__btn {
     cursor: pointer;
     background-color: transparent;
+    @media (max-width: 767px) {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
 }
 .bottom {
-  margin: auto 0 20px 0;
+  margin: auto 0 0 0;
+  padding: 0 0 30px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,6 +152,9 @@
     line-height: 26px;
     text-transform: uppercase;
     color: #FFFFFF;
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
     span {
       font-family: Arial;
       font-size: 18px;
